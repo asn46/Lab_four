@@ -2,8 +2,6 @@ from drachma import Drachma
 
 class BSTNode():
     def __init__(self, data=None, left=None, right=None):
-        if not isinstance(self.data, (None, int, float)):
-            raise TypeError("data must be None, int or float")
         self._data = data
         self._left = left
         self._right = right
