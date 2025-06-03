@@ -124,3 +124,47 @@ class BinarySearchTree():
     def empty_tree(self):
         pass
 
+
+    def breadth_first_traverse(self):
+        current_node = self.root
+        #create Queue here
+        while current_node is not None:
+            # process current_node here
+            if current_node.left is not None:
+                # enqueue left subtree here
+                pass
+            if current_node.right is not None:
+                # enqueue right subtree here
+                pass
+            # if not queue isEmpty:
+                # current_node =  Queue.dequeue
+            # else:
+                # current_node = None
+    
+        # destroy Queue here
+
+
+
+    def inorder_traverse(self, current_node):
+        if current_node is None:
+            return
+        self.inorder_traverse(current_node.left)
+        # process current_node here
+        self.inorder_traverse(current_node.right)
+
+    
+    def preorder_traverse(self, current_node):
+        if current_node is None:
+            return
+        # process current_node here
+        self.preorder_traverse(current_node.left)
+        self.preorder_traverse(current_node.right)
+
+
+    def postorder_traverse(self, current_node):
+        if current_node is None:
+            return
+        self.postorder_traverse(current_node.left)
+        self.postorder_traverse(current_node.right)
+        # process current_node here
+
