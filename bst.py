@@ -12,7 +12,7 @@ class BinarySearchTree():
                 return current_node
             elif data < current_node.data:
                 current_node = current_node.left
-            else: # data > current_node.data
+            else:
                 current_node = current_node.right
         
         return None
@@ -31,7 +31,7 @@ class BinarySearchTree():
                         current_node = None
                     else:
                         current_node = current_node.left
-                else: # node.data > current_node.data
+                else: 
                     if current_node.right is None:
                         current_node.right = node
                         current_node = None
@@ -59,21 +59,21 @@ class BinarySearchTree():
                 
                 # Case: No children
                 if current_node.left is None and current_node.right is None:
-                    if parent is None: # Node is root
+                    if parent is None: 
                         self.root = None
                     elif parent.left == current_node:
                         parent.left = None
-                    else: # parent.right == current_node
+                    else: 
                         parent.right = None
                     return True
                 
                 # Case: Node with only left child
                 elif current_node.right is None:
-                    if parent is None: #Node is root
+                    if parent is None: 
                         self.root = current_node.left
                     elif parent.left == current_node:
                         parent.left == current_node.left
-                    else: # parent.right == current_node
+                    else: 
                         parent.right = current_node.left
                     return True 
 
@@ -83,16 +83,15 @@ class BinarySearchTree():
                         self.root = current_node.right
                     elif parent.left == current_node:
                         parent.left == current_node.right
-                    else: # parent.right == current_node
+                    else: 
                         parent.right = current_node.right
                     return True
 
                 # Case: Node with 2 children
-                else:   #need to find successor (leftmost child of right subtree)
+                else:   
                     successor = current_node.right
                     while successor.left is not None:
                         successor = successor.left
-                    #copy successor data to current node
                     current_node.data = successor.data
                     parent = current_node
                     current_node = current_node.right
@@ -102,11 +101,11 @@ class BinarySearchTree():
                 parent = current_node
                 current_node = current_node.right
             
-            else: # data < current_node.data
+            else: 
                 parent = current_node
                 current_node = current_node.left
         
-        return False # Node not found
+        return False 
     
 
     def print(self):
