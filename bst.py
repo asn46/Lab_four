@@ -25,7 +25,7 @@ class BinarySearchTree():
             current_node = self.root
             # does not account for duplicates
             while current_node is not None:
-                if node.data < current_node.data:
+                if (node.get_Value() >  current_node.get_Value()):
                     if current_node.left is None:
                         current_node.left = node
                         current_node = None
@@ -47,7 +47,7 @@ class BinarySearchTree():
         if self.contains(data):
             return False
         new_node = BSTNode(data)
-        self.insert_node(BSTNode)
+        self.insert_node(new_node)
         return True
     
 
@@ -123,47 +123,52 @@ class BinarySearchTree():
     def empty_tree(self):
         pass
 
+    def reverse_breadth_first_traverse(self, current_node):
+        list = []
+        if current_node.left is not None:
+            list = list + self.reverse_breadth_first_traverse(current_node.left)
+        if current_node.right is not None:
+            list = list + self.reverse_breadth_first_traverse(current_node.right)
+        list.append(current_node.data.get_Value())
+        return list
 
-    def breadth_first_traverse(self):
-        current_node = self.root
-        #create Queue here
-        while current_node is not None:
-            # process current_node here
-            if current_node.left is not None:
-                # enqueue left subtree here
-                pass
-            if current_node.right is not None:
-                # enqueue right subtree here
-                pass
-            # if not queue isEmpty:
-                # current_node =  Queue.dequeue
-            # else:
-                # current_node = None
+        
+
+
+    def breadth_first_traverse(self, current_node, output_object): # This is reversed version of postorder
+        total = self.reverse_breadth_first_traverse(current_node)
+        for i in range(len(total)):
+            print(str(total[len(total)-i-1]) + ", ", end='')
+
+        
     
-        # destroy Queue here
 
 
 
-    def inorder_traverse(self, current_node):
-        if current_node is None:
-            return
-        self.inorder_traverse(current_node.left)
-        # process current_node here
-        self.inorder_traverse(current_node.right)
+    def inorder_traverse(self, current_node, output_object):
+
+        if current_node.left is not None:
+            self.inorder_traverse(current_node.left, output_object)
+        print(str(current_node.data.get_Value()) + ", ", end='')
+        output_object.write(str(current_node.data.get_Value()) + ", ")
+        if current_node.right is not None:
+            self.inorder_traverse(current_node.right, output_object)
+
 
     
-    def preorder_traverse(self, current_node):
-        if current_node is None:
-            return
-        # process current_node here
-        self.preorder_traverse(current_node.left)
-        self.preorder_traverse(current_node.right)
+    def preorder_traverse(self, current_node, output_object):
+        print(str(current_node.data.get_Value()) + ", ", end='')
+        output_object.write(str(current_node.data.get_Value()) + ", ")
+        if current_node.left is not None:
+            self.preorder_traverse(current_node.left, output_object)
+        if current_node.right is not None:
+            self.preorder_traverse(current_node.right, output_object)
 
 
-    def postorder_traverse(self, current_node):
-        if current_node is None:
-            return
-        self.postorder_traverse(current_node.left)
-        self.postorder_traverse(current_node.right)
-        # process current_node here
-
+    def postorder_traverse(self, current_node, output_object):
+        if current_node.left is not None:
+            self.postorder_traverse(current_node.left, output_object)
+        if current_node.right is not None:
+            self.postorder_traverse(current_node.right, output_object)
+        print(str(current_node.data.get_Value()) + ", ", end='')
+        output_object.write(str(current_node.data.get_Value()) + ", ")
