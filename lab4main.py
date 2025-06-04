@@ -6,7 +6,6 @@ from singlylinkedlist import SinglyLinkedList
 from queue import Queue
 
 def main():
-    # changes made -> added method to drachma
     print("Welcome to our Lab 4 demonstration -  Gaurav Purushothaman and Aseem Nerlekar")
     currencies = [
         Drachma(57.12),
