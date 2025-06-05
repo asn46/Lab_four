@@ -1,3 +1,9 @@
+"""
+Lab 4
+Aseem Nerlekar, Gaurav Purushothaman
+This assignment is to demonstrate implemention of Binary Search Trees and all its functionalities
+"""
+
 from bst import BinarySearchTree
 from bstnode import BSTNode
 from currency import Currency
@@ -31,8 +37,6 @@ def main():
     ]
     bst = BinarySearchTree()
     for i in currencies:
-        #node = BSTNode(i)
-        #bst.insert_node(node)
         bst.insert(i)
 
 
@@ -52,7 +56,7 @@ def main():
                 valid = False
                 output_object.write("Invalid data")
             if(valid):
-                result = bst.insert(value)
+                result = bst.insert(Drachma(value))
                 if not result:
                     print("Invalid - duplicate data")
                     output_object.write("Invalid - duplicate data")
@@ -80,14 +84,14 @@ def main():
                 output_object.write("Invalid data")
             if(valid):
                 data = Drachma(value)
-                bst.delete(data)
+                if(not(bst.delete(data))):
+                    print("Invalid value")
         elif(choice == "t"):
             print_traversal(bst, output_object)
         
         elif(choice != "q"):
             print("Enter a valid action")
         
-        print("\n")
 
 
     print_traversal(bst, output_object)
@@ -98,6 +102,14 @@ def main():
 
 
 def print_traversal(bst, output_object):
+    """Method to print out all of the different types of traversals
+        pre: 
+        bst - the binary search tree object
+        output_object - the txt file object to write
+        post:
+        prints out all of the different traversals for the binary tree
+        return:
+    """
     output_object.write("Breadth-first traverse : ")
     print("Breadth-first traverse : ", end='')
     bst.breadth_first_traverse(output_object)
