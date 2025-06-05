@@ -3,11 +3,12 @@
     breadth first traversal in the BinarySearchTree class
 """
 
-""""
-LAB 3
-Aseem Nerlekar, Gaurav Purushothaman
-This assignment is to demonstrate implemention of link-based List and derivative ADTs of Stack and Queue
 """
+Lab 4
+Aseem Nerlekar, Gaurav Purushothaman
+This assignment is to demonstrate implemention of Binary Search Trees and all its functionalities
+"""
+
 
 from currency import Currency
 from singlylinkedlist import SinglyLinkedList
@@ -83,6 +84,14 @@ class Queue(SinglyLinkedList):
         """
         super().emptyList()
 
+    def isQueueEmpty(self):
+        """Shows whether the queue object is empty or not
+        pre: 
+        post:
+        return: boolean value - True if queue is empty, otherwise False
+        """
+        return super().isListEmpty()
+
     def addCurrency(self, currency_obj, node_idx):
         """ addCurrency method in this class is not supposed to be run, so it gives NotImplemented Error
         pre: currency_obj which is a Currency object and node_idx, the index of the node
@@ -122,9 +131,6 @@ class Queue(SinglyLinkedList):
         return: 
         """
         raise NotImplementedError("Cannot call parent method directly")
-    
-    def isQueueEmpty(self):
-        return super().isListEmpty()
     
     def isListEmpty(self):
         """ isListEmpty method in this class is not supposed to be run, so it gives NotImplemented Error

@@ -13,7 +13,7 @@ class BSTNode():
 
     @property
     def data(self):
-        """ Property method which gives the data to the BinarySearchTree object
+        """ Property method which gives the data to the BSTNode object
         pre:
         post:
         return: data - a pointer to a Drachma object
@@ -22,7 +22,7 @@ class BSTNode():
     
     @data.setter
     def data(self, drachma):
-        """ Setter method is to  set data of the Binary Search Tree object to the drachma object
+        """ Setter method is to  set data of the BSTNode object to the drachma object
         pre: drachma of the Drachma class
         post: TypeError if drachma not of the Drachma class
         return: 
@@ -42,7 +42,7 @@ class BSTNode():
     
     @left.setter
     def left(self, node):
-        """ Setter method is to set data of the BinarySearchTree Node object to the left node
+        """ Setter method is to set data of the BSTNode object to the left node
         pre: node of the BSTNode
         post: TypeError if node not of the BSTNode class
         return: 
@@ -62,7 +62,7 @@ class BSTNode():
     
     @right.setter
     def right(self, node):
-        """ Setter method is to set data of the BinarySearchTree Node object to the right node
+        """ Setter method is to set data of the BSTNode object to the right node
         pre: node of the BSTNode
         post: TypeError if node not of the BSTNode class
         return: 

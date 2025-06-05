@@ -1,8 +1,9 @@
 """
-LAB 3
+Lab 4
 Aseem Nerlekar, Gaurav Purushothaman
-This assignment is to demonstrate implemention of link-based List and derivative ADTs of Stack and Queue
+This assignment is to demonstrate implemention of Binary Search Trees and all its functionalities
 """
+
 from currency import Currency
 class Drachma(Currency):
 
