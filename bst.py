@@ -6,12 +6,12 @@ class BinarySearchTree():
         self.root = root
 
 
-    def search(self, data):
+    def search(self, in_data):
         current_node = self.root
-        while current_node is not None:        
-            if current_node.data.get_Value() == data.get_Value():
+        while current_node is not None: 
+            if current_node.data.get_Value() == in_data.get_Value():
                 return current_node
-            elif data.get_Value() < current_node.data.get_Value():
+            elif in_data.get_Value() < current_node.data.get_Value():
                 current_node = current_node.left
             else:
                 current_node = current_node.right
