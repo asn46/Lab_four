@@ -31,8 +31,9 @@ def main():
     ]
     bst = BinarySearchTree()
     for i in currencies:
-        node = BSTNode(i)
-        bst.insert_node(node)
+        #node = BSTNode(i)
+        #bst.insert_node(node)
+        bst.insert(i)
     output_object = open('output.txt', 'w')
     print_traversal(bst, output_object)
     choice = ""
@@ -48,8 +49,12 @@ def main():
                 valid = False
                 output_object.write("Invalid data")
             if(valid):
-                node = Drachma(value)
-                bst.insert_node(node)
+                #node = Drachma(value)
+                #bst.insert_node(node)
+                result = bst.insert(value)
+                if not result:
+                    print("Invalid - duplicate data")
+                    output_object.write("Invalid - duplicate data")
         elif(choice =="s"):
             value = 0
             try:
@@ -59,8 +64,8 @@ def main():
                 valid = False
                 output_object.write("Invalid data")
             if(valid):
-                node = Drachma(value)
-                if(bst.search(node)!=None):
+                data = Drachma(value)
+                if(bst.search(data)!=None):
                     print("This node is found")
                 else:
                     print("This node is not found")
@@ -73,8 +78,8 @@ def main():
                 valid = False
                 output_object.write("Invalid data")
             if(valid):
-                node = Drachma(value)
-                bst.remove(node)
+                data = Drachma(value)
+                bst.remove(data)
         elif(choice == "t"):
             print_traversal(bst, output_object)
         
