@@ -54,12 +54,12 @@ def main():
             except(ValueError):
                 print("Invalid data")
                 valid = False
-                output_object.write("Invalid data")
+                output_object.write("Invalid data\n")
             if(valid):
                 result = bst.insert(Drachma(value))
                 if not result:
                     print("Invalid - duplicate data")
-                    output_object.write("Invalid - duplicate data")
+                    output_object.write("Invalid - duplicate data\n")
         elif(choice =="s"):
             value = 0
             try:
@@ -67,7 +67,7 @@ def main():
             except(ValueError):
                 print("Invalid data")
                 valid = False
-                output_object.write("Invalid data")
+                output_object.write("Invalid data\n")
             if(valid):
                 data = Drachma(value)
                 if(bst.search(data)!=None):
@@ -81,12 +81,12 @@ def main():
             except(ValueError):
                 print("Invalid data")
                 valid = False
-                output_object.write("Invalid data")
+                output_object.write("Invalid data\n")
             if(valid):
                 data = Drachma(value)
                 if(not(bst.delete(data))):
                     print("Invalid value")
-                    output_object.write("Invalid value")
+                    output_object.write("Invalid value\n")
         elif(choice == "t"):
             print_traversal(bst, output_object)
         
