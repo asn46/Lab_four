@@ -86,6 +86,7 @@ def main():
                 data = Drachma(value)
                 if(not(bst.delete(data))):
                     print("Invalid value")
+                    output_object.write("Invalid value")
         elif(choice == "t"):
             print_traversal(bst, output_object)
         
