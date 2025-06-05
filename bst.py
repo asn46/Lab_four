@@ -12,6 +12,7 @@ class BinarySearchTree():
     def __init__(self, root=None):
         self.root = root
 
+
     @property
     def root(self):
         """ Property method which gives root of the BinarySearchTree
