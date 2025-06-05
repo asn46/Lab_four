@@ -34,7 +34,10 @@ def main():
         #node = BSTNode(i)
         #bst.insert_node(node)
         bst.insert(i)
+
+
     output_object = open('output.txt', 'w')
+
     print_traversal(bst, output_object)
     choice = ""
     while(choice != "q"):
@@ -49,8 +52,6 @@ def main():
                 valid = False
                 output_object.write("Invalid data")
             if(valid):
-                #node = Drachma(value)
-                #bst.insert_node(node)
                 result = bst.insert(value)
                 if not result:
                     print("Invalid - duplicate data")
@@ -79,27 +80,27 @@ def main():
                 output_object.write("Invalid data")
             if(valid):
                 data = Drachma(value)
-                bst.remove(data)
+                bst.delete(data)
         elif(choice == "t"):
             print_traversal(bst, output_object)
         
         elif(choice != "q"):
             print("Enter a valid action")
         
+        print("\n")
+
+
+    print_traversal(bst, output_object)
 
 
     output_object.close()
 
 
 
-
-
-
-
 def print_traversal(bst, output_object):
-    output_object.write("Breath-first traverse : ")
-    print("Breath-first traverse : ", end='')
-    bst.breadth_first_traverse(bst.root, output_object)
+    output_object.write("Breadth-first traverse : ")
+    print("Breadth-first traverse : ", end='')
+    bst.breadth_first_traverse(output_object)
     
 
     output_object.write("\nIn-order traverse : ")

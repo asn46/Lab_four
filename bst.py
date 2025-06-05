@@ -1,6 +1,5 @@
 from bstnode import BSTNode
-
-#TODO: remove print statements used for debugging
+from queue import Queue
 
 class BinarySearchTree():
     def __init__(self, root=None):
@@ -8,7 +7,6 @@ class BinarySearchTree():
 
 
     def search(self, data):
-        print(f"Searching for node with val:  {data.get_Value()}")
         current_node = self.root
         while current_node is not None:        
             if current_node.data.get_Value() == data.get_Value():
@@ -22,12 +20,10 @@ class BinarySearchTree():
     
 
     def insert_node(self, node):
-        print(f"Inserting node with val:  {node.data.get_Value()}")
         if self.root is None:
             self.root = node
         else:
             current_node = self.root
-            # does not account for duplicates
             while current_node is not None:
                 if (node.data.get_Value() <  current_node.data.get_Value()):
                     if current_node.left is None:
@@ -49,14 +45,13 @@ class BinarySearchTree():
 
     def insert(self, data):
         if self.contains(data):
-            print(f"Node with val: {data.get_Value()} already exists in tree")
             return False
         new_node = BSTNode(data)
         self.insert_node(new_node)
         return True
     
 
-    def remove(self, data):
+    def delete(self, data):
         parent = None
         current_node = self.root
         while current_node is not None:
@@ -70,7 +65,6 @@ class BinarySearchTree():
                         parent.left = None
                     else: 
                         parent.right = None
-                    print(f"Removing node with val:  {data.get_Value()}")
                     return True
                 
                 # Case: Node with only left child
@@ -81,7 +75,6 @@ class BinarySearchTree():
                         parent.left == current_node.left
                     else: 
                         parent.right = current_node.left
-                    print(f"Removing node with val:  {data.get_Value()}")
                     return True 
 
                 # Case: Node with only right child
@@ -92,7 +85,6 @@ class BinarySearchTree():
                         parent.left == current_node.right
                     else: 
                         parent.right = current_node.right
-                    print(f"Removing node with val:  {data.get_Value()}")
                     return True
 
                 # Case: Node with 2 children
@@ -113,24 +105,30 @@ class BinarySearchTree():
                 parent = current_node
                 current_node = current_node.left
         
-        print(f"Node with val: {data.get_Value()} not found in tree")
         return False 
     
 
     def print(self):
-        pass
+        return self.inorder_traverse
 
 
     def count(self):
-        pass
+        return self._recursive_count(self.root)
+        
+
+    def _recursive_count(self, node):
+        if node is None:
+            return 0
+        else:
+            return 1 + self._recursive_count(node.left) + self._recursive_count(node.right)
 
 
     def is_empty(self):
-        pass
+        return self.root is None
 
 
     def empty_tree(self):
-        pass
+        self.root = None
 
     def reverse_breadth_first_traverse(self, current_node):
         list = []
@@ -142,15 +140,23 @@ class BinarySearchTree():
         return list
 
 
-
-    def breadth_first_traverse(self, current_node, output_object): # This is reversed version of postorder
-        total = self.reverse_breadth_first_traverse(current_node)
-        for i in range(len(total)):
-            print(str(total[len(total)-i-1]) + ", ", end='')
-
-        
-    
-
+    def breadth_first_traverse(self, output_object):        
+        if self.root is not None:
+            current_node = self.root
+            bf_queue =  Queue()
+            while current_node is not None:
+                print(str(current_node.data.get_Value()) + ", ", end='')
+                output_object.write(str(current_node.data.get_Value()) + ", ")
+                if current_node.left is not None:
+                    bf_queue.enqueue(current_node.left.data)
+                if current_node.right is not None:
+                    bf_queue.enqueue(current_node.right.data)
+                if not bf_queue.isQueueEmpty():
+                    current_node = self.search(bf_queue.dequeue())
+                else:
+                    current_node = None 
+                
+            del bf_queue 
 
 
     def inorder_traverse(self, current_node, output_object):
@@ -160,8 +166,6 @@ class BinarySearchTree():
         output_object.write(str(current_node.data.get_Value()) + ", ")
         if current_node.right is not None:
             self.inorder_traverse(current_node.right, output_object)
-
-
 
     
     def preorder_traverse(self, current_node, output_object):

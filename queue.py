@@ -1,3 +1,8 @@
+""" New Code added on line 126
+    isQueueEmpty function was added because we cannot call isListEmpty directly and need this function for
+    breadth first traversal in the BinarySearchTree class
+"""
+
 """"
 LAB 3
 Aseem Nerlekar, Gaurav Purushothaman
@@ -117,6 +122,9 @@ class Queue(SinglyLinkedList):
         return: 
         """
         raise NotImplementedError("Cannot call parent method directly")
+    
+    def isQueueEmpty(self):
+        return super().isListEmpty()
     
     def isListEmpty(self):
         """ isListEmpty method in this class is not supposed to be run, so it gives NotImplemented Error
