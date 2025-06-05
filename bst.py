@@ -109,7 +109,7 @@ class BinarySearchTree():
     
 
     def print(self):
-        return self.inorder_traverse
+        return self.inorder_traverse(self.root)
 
 
     def count(self):
@@ -140,13 +140,14 @@ class BinarySearchTree():
         return list
 
 
-    def breadth_first_traverse(self, output_object):        
+    def breadth_first_traverse(self, output_object=None):        
         if self.root is not None:
             current_node = self.root
             bf_queue =  Queue()
             while current_node is not None:
                 print(str(current_node.data.get_Value()) + ", ", end='')
-                output_object.write(str(current_node.data.get_Value()) + ", ")
+                if output_object:
+                    output_object.write(str(current_node.data.get_Value()) + ", ")
                 if current_node.left is not None:
                     bf_queue.enqueue(current_node.left.data)
                 if current_node.right is not None:
@@ -159,28 +160,31 @@ class BinarySearchTree():
             del bf_queue 
 
 
-    def inorder_traverse(self, current_node, output_object):
+    def inorder_traverse(self, current_node, output_object=None):
         if current_node.left is not None:
             self.inorder_traverse(current_node.left, output_object)
         print(str(current_node.data.get_Value()) + ", ", end='')
-        output_object.write(str(current_node.data.get_Value()) + ", ")
+        if output_object:
+            output_object.write(str(current_node.data.get_Value()) + ", ")
         if current_node.right is not None:
             self.inorder_traverse(current_node.right, output_object)
 
     
-    def preorder_traverse(self, current_node, output_object):
+    def preorder_traverse(self, current_node, output_object=None):
         print(str(current_node.data.get_Value()) + ", ", end='')
-        output_object.write(str(current_node.data.get_Value()) + ", ")
+        if output_object:
+            output_object.write(str(current_node.data.get_Value()) + ", ")
         if current_node.left is not None:
             self.preorder_traverse(current_node.left, output_object)
         if current_node.right is not None:
             self.preorder_traverse(current_node.right, output_object)
 
 
-    def postorder_traverse(self, current_node, output_object):
+    def postorder_traverse(self, current_node, output_object=None):
         if current_node.left is not None:
             self.postorder_traverse(current_node.left, output_object)
         if current_node.right is not None:
             self.postorder_traverse(current_node.right, output_object)
         print(str(current_node.data.get_Value()) + ", ", end='')
-        output_object.write(str(current_node.data.get_Value()) + ", ")
+        if output_object:
+            output_object.write(str(current_node.data.get_Value()) + ", ")
