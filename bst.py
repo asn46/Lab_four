@@ -29,7 +29,7 @@ class BinarySearchTree():
         post: TypeError if bst_node not of the BSTNode class
         return: 
         """
-        if not isinstance(bst_node, BSTNode):
+        if not isinstance(bst_node, BSTNode) and not bst_node is None:
             raise TypeError("Input must be a BSTNode object")
         self._root = bst_node
 
