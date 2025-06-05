@@ -1,16 +1,19 @@
 from bstnode import BSTNode
 
+#TODO: remove print statements used for debugging
+
 class BinarySearchTree():
     def __init__(self, root=None):
         self.root = root
 
 
     def search(self, data):
+        print(f"Searching for node with val:  {data.get_Value()}")
         current_node = self.root
         while current_node is not None:        
-            if current_node.data == data:
+            if current_node.data.get_Value() == data.get_Value():
                 return current_node
-            elif data < current_node.data:
+            elif data.get_Value() < current_node.data.get_Value():
                 current_node = current_node.left
             else:
                 current_node = current_node.right
@@ -19,13 +22,14 @@ class BinarySearchTree():
     
 
     def insert_node(self, node):
+        print(f"Inserting node with val:  {node.data.get_Value()}")
         if self.root is None:
             self.root = node
         else:
             current_node = self.root
             # does not account for duplicates
             while current_node is not None:
-                if (node.get_Value() >  current_node.get_Value()):
+                if (node.data.get_Value() <  current_node.data.get_Value()):
                     if current_node.left is None:
                         current_node.left = node
                         current_node = None
@@ -45,6 +49,7 @@ class BinarySearchTree():
 
     def insert(self, data):
         if self.contains(data):
+            print(f"Node with val: {data.get_Value()} already exists in tree")
             return False
         new_node = BSTNode(data)
         self.insert_node(new_node)
@@ -55,7 +60,7 @@ class BinarySearchTree():
         parent = None
         current_node = self.root
         while current_node is not None:
-            if current_node.data == data:
+            if current_node.data.get_Value() == data.get_Value():
                 
                 # Case: No children
                 if current_node.left is None and current_node.right is None:
@@ -65,6 +70,7 @@ class BinarySearchTree():
                         parent.left = None
                     else: 
                         parent.right = None
+                    print(f"Removing node with val:  {data.get_Value()}")
                     return True
                 
                 # Case: Node with only left child
@@ -75,6 +81,7 @@ class BinarySearchTree():
                         parent.left == current_node.left
                     else: 
                         parent.right = current_node.left
+                    print(f"Removing node with val:  {data.get_Value()}")
                     return True 
 
                 # Case: Node with only right child
@@ -85,6 +92,7 @@ class BinarySearchTree():
                         parent.left == current_node.right
                     else: 
                         parent.right = current_node.right
+                    print(f"Removing node with val:  {data.get_Value()}")
                     return True
 
                 # Case: Node with 2 children
@@ -97,7 +105,7 @@ class BinarySearchTree():
                     current_node = current_node.right
                     data = successor.data
             
-            elif data > current_node.data:
+            elif data.get_Value() > current_node.data.get_Value():
                 parent = current_node
                 current_node = current_node.right
             
@@ -105,6 +113,7 @@ class BinarySearchTree():
                 parent = current_node
                 current_node = current_node.left
         
+        print(f"Node with val: {data.get_Value()} not found in tree")
         return False 
     
 
@@ -132,7 +141,6 @@ class BinarySearchTree():
         list.append(current_node.data.get_Value())
         return list
 
-        
 
 
     def breadth_first_traverse(self, current_node, output_object): # This is reversed version of postorder
@@ -146,13 +154,13 @@ class BinarySearchTree():
 
 
     def inorder_traverse(self, current_node, output_object):
-
         if current_node.left is not None:
             self.inorder_traverse(current_node.left, output_object)
         print(str(current_node.data.get_Value()) + ", ", end='')
         output_object.write(str(current_node.data.get_Value()) + ", ")
         if current_node.right is not None:
             self.inorder_traverse(current_node.right, output_object)
+
 
 
     
